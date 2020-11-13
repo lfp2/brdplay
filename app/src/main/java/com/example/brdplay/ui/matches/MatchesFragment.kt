@@ -1,4 +1,4 @@
-package com.example.brdplay.ui.home
+package com.example.brdplay.ui.matches
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,22 +10,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.brdplay.R
 
-class HomeFragment : Fragment() {
+class MatchesFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var matchesViewModel: MatchesViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        /* val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        matchesViewModel =
+                ViewModelProvider(this).get(MatchesViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_matches, container, false)
+        val textView: TextView = root.findViewById(R.id.text_matches)
+        matchesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-        }) */
+        })
         return root
     }
 }

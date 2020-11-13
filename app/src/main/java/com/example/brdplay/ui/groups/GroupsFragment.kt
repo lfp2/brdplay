@@ -1,4 +1,4 @@
-package com.example.brdplay.ui.dashboard
+package com.example.brdplay.ui.groups
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.brdplay.R
 
-class DashboardFragment : Fragment() {
+class GroupsFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var groupsViewModel: GroupsViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-                ViewModelProvider(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        groupsViewModel =
+                ViewModelProvider(this).get(GroupsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_groups, container, false)
+        val textView: TextView = root.findViewById(R.id.text_groups)
+        groupsViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Brdplay</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="title_matches">Matches</string>
+    <string name="title_groups">Groups</string>
+    <string name="title_profile">Profile</string>
+    <string name="new_game">New Game</string>
 </resources>
