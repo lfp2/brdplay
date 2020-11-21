@@ -2,10 +2,8 @@ package com.example.brdplay
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.brdplay.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -24,48 +22,45 @@ class SignInActivity : AppCompatActivity() {
         auth = Firebase.auth
         database = Firebase.database.reference
         buttonSignIn.setOnClickListener {
-            createAccount(
-                    editTextPersonName.text.toString(),
-                    editTextEmailAddress.text.toString(),
-                    editTextPassword.text.toString()
+            signIn(
+                signInEmailAddress.text.toString(),
+                signInPassword.text.toString()
             )
         }
+        buttonSignUp.setOnClickListener {
+            goToRegister()
+        }
+
     }
 
     public override fun onStart() {
         super.onStart()
         auth.currentUser?.let {
-            updateUI(it)
+            goToMainActivity(it)
         }
     }
 
-    private fun updateUI(user: FirebaseUser?) {
+    private fun goToMainActivity(user: FirebaseUser?) {
         // Go to MainActivity
         if (user != null) {
-            startActivity(Intent(this@SignInActivity, MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
 
-    private fun createAccount(name: String, email: String, password: String) {
-        auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(baseContext, "Created user.",
-                            Toast.LENGTH_SHORT).show()
-                        val user = auth.currentUser
-                        writeNewUser(user!!.uid, name, email)
-                        updateUI(user)
-                    } else {
-                        Toast.makeText(baseContext, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show()
-                    }
-                }
+    private fun goToRegister() {
+        startActivity(Intent(this, SignUpActivity::class.java))
     }
 
-
-    private fun writeNewUser(userId: String, name: String, email: String?) {
-        val user = User(name, email)
-        database.child("users").child(userId).setValue(user)
+    private fun signIn(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    goToMainActivity(auth.currentUser!!)
+                } else {
+                    Toast.makeText(baseContext, "Invalid Email or Password",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 }

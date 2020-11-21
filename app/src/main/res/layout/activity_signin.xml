@@ -2,52 +2,48 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editTextEmailAddress"
+        android:id="@+id/signInEmailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="Email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPersonName" />
-
-    <EditText
-        android:id="@+id/editTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:inputType="textPersonName"
-       android:hint="Name"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/signInPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="Password"
+        android:hint="@string/password"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signInEmailAddress" />
 
     <Button
         android:id="@+id/buttonSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        android:text="@string/signin"
+        app:layout_constraintEnd_toEndOf="@id/signInPassword"
+        app:layout_constraintTop_toBottomOf="@id/signInPassword" />
+
+    <Button
+        android:id="@+id/buttonSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="@string/signup"
+        app:layout_constraintEnd_toStartOf="@id/buttonSignIn"
+        app:layout_constraintTop_toTopOf="@id/buttonSignIn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
