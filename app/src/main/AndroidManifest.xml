@@ -21,6 +21,10 @@
         </activity>
         <activity android:name=".MainActivity">
         </activity>
+        <activity android:name=".NewGroupActivity" android:label="New Group">
+        </activity>
+        <activity android:name=".OpenMatchActivity" android:label="Match">
+        </activity>
     </application>
 
 </manifest>
