@@ -40,33 +40,32 @@ class MatchesAdapter(private var dataSet: List<Match>): RecyclerView.Adapter<Mat
                     passwordInput.hint = context.getString(R.string.password)
                     passwordInput.transformationMethod = PasswordTransformationMethod.getInstance()
 
-                    builder.setTitle("Password")
+                    builder.setTitle(R.string.password)
                     builder.setView(passwordInput)
-                    builder.setPositiveButton("JOIN", DialogInterface.OnClickListener { _, _ ->
+                    builder.setPositiveButton(R.string.join, DialogInterface.OnClickListener { _, _ ->
                         if (passwordInput.text.toString() == match.password) {
                             val intent = Intent(context, OpenMatchActivity::class.java)
-                            intent.putExtra("match", match)
+                            intent.putExtra("match", match.convertToMatch2())
                             context.startActivity(intent)
-//                            Toast.makeText(context, "Right password", Toast.LENGTH_LONG).show()
                         } else {
                             Toast.makeText(context, "Wrong password", Toast.LENGTH_LONG).show()
                         }
                     })
-                    builder.setNegativeButton("CANCEL", DialogInterface.OnClickListener { dialog, _ ->
+                    builder.setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialog, _ ->
                         dialog.cancel()
                     })
                     builder.show()
                 } else {
                     val builder = AlertDialog.Builder(context)
 
-                    builder.setTitle("Join match")
-                    builder.setPositiveButton("JOIN", DialogInterface.OnClickListener { _, _ ->
+                    builder.setTitle(R.string.join_match)
+                    builder.setPositiveButton(R.string.join, DialogInterface.OnClickListener { _, _ ->
                         val intent = Intent(context, OpenMatchActivity::class.java)
-                        intent.putExtra("match", match)
+                        intent.putExtra("match", match.convertToMatch2())
                         context.startActivity(intent)
 //                        Toast.makeText(context, "Open match", Toast.LENGTH_LONG).show()
                     })
-                    builder.setNegativeButton("CANCEL", DialogInterface.OnClickListener { dialog, _ ->
+                    builder.setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialog, _ ->
                         dialog.cancel()
                     })
                     builder.show()

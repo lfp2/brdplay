@@ -59,7 +59,7 @@ class SignInActivity : AppCompatActivity() {
 
     private fun signIn(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     goToMainActivity(auth.currentUser!!)
                 } else {

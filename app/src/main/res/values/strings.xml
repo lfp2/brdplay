@@ -19,4 +19,10 @@
     <string name="more">More</string>
     <string name="playing"><b>Playing at %s</b></string>
     <string name="users_playing"><b>Users Playing</b></string>
+    <string name="join_call">Join call</string>
+    <string name="open_map">Open map</string>
+    <string name="join">Join</string>
+    <string name="cancel">Cancel</string>
+    <string name="join_match">Join match?</string>
+    <string name="type_members_username">Type username of the members</string>
 </resources>

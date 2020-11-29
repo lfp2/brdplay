@@ -31,6 +31,7 @@ class GroupsFragment : Fragment() {
         val newGroupButton : FloatingActionButton = root.findViewById(R.id.new_group)
         newGroupButton.setOnClickListener {
             val intent = Intent(this.context, NewGroupActivity::class.java)
+            intent.putExtra("activeUsername", activeUsername)
             this.context?.startActivity(intent)
         }
 

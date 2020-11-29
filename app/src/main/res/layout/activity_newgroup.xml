@@ -2,9 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/group_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/group_name"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <EditText
         android:id="@+id/editTextGroupName"
@@ -12,44 +21,46 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="10dp"
         android:inputType="text"
         android:hint="@string/group_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-<!--    <EditText-->
-<!--        android:id="@+id/editTextGroupMembers"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="15dp"-->
-<!--        android:layout_marginEnd="15dp"-->
-<!--        android:layout_marginTop="24dp"-->
-<!--        android:inputType="text"-->
-<!--        android:hint="@string/group_members"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/editTextGroupName" />-->
-    <com.google.android.material.textfield.TextInputLayout
+        app:layout_constraintTop_toBottomOf="@id/group_name_text" />
+
+    <TextView
+        android:id="@+id/group_members_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/group_members"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/editTextGroupName"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/members_chips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/group_members_text"/>
+
+    <EditText
+        android:id="@+id/member_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/members"
-        app:layout_constraintTop_toBottomOf="@id/editTextGroupName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        <com.google.android.material.chip.ChipGroup
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/members_group"/>
-        <EditText
-            android:id="@+id/edit_value"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:imeOptions="actionDone"
-            android:maxLines="1"
-            android:singleLine="true"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        android:imeOptions="actionDone"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="5dp"
+        android:inputType="text"
+        android:hint="@string/type_members_username"
+        app:layout_constraintTop_toBottomOf="@id/members_chips"/>
+
     <Button
         android:id="@+id/buttonCreateGroup"
         android:layout_width="wrap_content"
@@ -58,6 +69,6 @@
         android:text="@string/create_group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/members" />
+        app:layout_constraintTop_toBottomOf="@id/member_edit_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
