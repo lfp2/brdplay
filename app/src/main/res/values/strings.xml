@@ -10,7 +10,7 @@
     <string name="username">Username</string>
     <string name="group_name">Group Name</string>
     <string name="group_members">Members</string>
-    <string name="create_group">Create</string>
+    <string name="create">Create</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="signin">Sign in</string>
@@ -27,4 +27,13 @@
     <string name="join_match">Join match?</string>
     <string name="type_members_username">Type username of the members</string>
     <string name="edit_profile">Edit profile</string>
+    <string name="game_name">Game name</string>
+    <string name="match_url">Match call URL</string>
+    <string name="game_location">Game address location</string>
+    <string name="group">Group</string>
+    <string name="hour_format">%02d:%02d</string>
+    <string name="date_format">%02d/%02d/%04d</string>
+    <string name="match_private">Is match private?</string>
+    <string name="match_online">Is match online?</string>
+>>>>>>> Stashed changes
 </resources>

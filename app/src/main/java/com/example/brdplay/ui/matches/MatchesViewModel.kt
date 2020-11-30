@@ -34,7 +34,11 @@ class MatchesViewModel : ViewModel() {
                         return@addSnapshotListener
                     }
                     val matches =
-                        value!!.documents.map { doc -> doc!!.toObject(Match::class.java)!! }
+                        value!!.documents.map { doc ->
+                            val match = doc!!.toObject(Match::class.java)!!
+                            match.id = doc.id
+                            match
+                        }
                     _matches.postValue(matches)
                 }
         }

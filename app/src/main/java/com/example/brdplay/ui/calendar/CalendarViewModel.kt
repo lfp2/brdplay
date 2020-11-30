@@ -29,7 +29,11 @@ class CalendarViewModel : ViewModel() {
                     if (e != null) {
                         return@addSnapshotListener
                     }
-                    val match = value!!.documents.map { doc -> doc!!.toObject(Match::class.java)!! }
+                    val match = value!!.documents.map { doc ->
+                        val match = doc!!.toObject(Match::class.java)!!
+                        match.id = doc.id
+                        match
+                    }
                     _calendar.postValue(match)
                 }
         }
