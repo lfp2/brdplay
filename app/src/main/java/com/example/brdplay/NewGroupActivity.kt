@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.brdplay.models.Group
@@ -33,34 +31,21 @@ class NewGroupActivity : AppCompatActivity() {
 
         val createButton : Button = findViewById(R.id.buttonCreateGroup)
         val nameView : EditText = findViewById(R.id.editTextGroupName)
-        val memberEdit: EditText = findViewById(R.id.member_edit_text)
+        val memberEdit: AutoCompleteTextView = findViewById(R.id.member_edit_text)
         val membersChipsGroup: ChipGroup = findViewById(R.id.members_chips)
 
         // Add creator to members
         addChipToGroup(activeUsername, membersChipsGroup)
 
-        memberEdit.setOnEditorActionListener { v, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                val memberUsername = v.text
-                if (!memberUsername.isNullOrEmpty()) {
-                    checkAndAddChipToGroup(memberUsername.toString(), membersChipsGroup)
-                    v.text = ""
-                }
-                return@setOnEditorActionListener true
-            }
-            false
-        }
+        print(sharedViewModel.users.toTypedArray())
 
-        memberEdit.setOnKeyListener { v, keyCode, _ ->
-            if (keyCode == KeyEvent.KEYCODE_COMMA) {
-                val memberUsername = memberEdit.text
-                if (!memberUsername.isNullOrEmpty()) {
-                    checkAndAddChipToGroup(memberUsername.toString(), membersChipsGroup)
-                    memberEdit.text.clear()
-                }
-                return@setOnKeyListener true
-            }
-            false
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, sharedViewModel.users.toTypedArray())
+        memberEdit.setAdapter(adapter)
+
+        memberEdit.onItemClickListener = AdapterView.OnItemClickListener{
+                parent,_,position,_->
+            val selectedItem = parent.getItemAtPosition(position).toString()
+            checkAndAddChipToGroup(selectedItem.toString(), membersChipsGroup)
         }
 
         createButton.setOnClickListener {
