@@ -23,9 +23,8 @@ class MatchesFragment : Fragment() {
         matchesViewModel =
                 ViewModelProvider(this).get(MatchesViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_matches, container, false)
-        val activeUsername = requireActivity().intent.getStringExtra("activeUsername")!!
 
-        val adapter = MatchesAdapter(activeUsername, emptyList())
+        val adapter = MatchesAdapter(emptyList())
         matchesViewModel.matches().observe(viewLifecycleOwner, Observer { matches ->
             adapter.setMatches(matches)
         })
