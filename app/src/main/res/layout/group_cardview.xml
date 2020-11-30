@@ -41,11 +41,12 @@
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/group_color_bar"/>
-        <ListView
+        <TextView
             android:id="@+id/group_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/group_color_bar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
