@@ -26,7 +26,11 @@ class GroupsViewModel : ViewModel() {
                     if (e != null) {
                         return@addSnapshotListener
                     }
-                    val groups = value!!.documents.map { doc -> doc!!.toObject(Group::class.java)!! }
+                    val groups = value!!.documents.map { doc ->
+                        var group = doc!!.toObject(Group::class.java)!!
+                        group.id = doc.id
+                        group
+                    }
                     _groups.postValue(groups)
                 }
         }

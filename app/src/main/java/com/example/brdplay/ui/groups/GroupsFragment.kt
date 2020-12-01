@@ -35,7 +35,7 @@ class GroupsFragment : Fragment() {
             this.context?.startActivity(intent)
         }
 
-        val adapter = GroupsAdapter(emptyList())
+        val adapter = GroupsAdapter(activeUsername, emptyList())
         groupsViewModel.groups(activeUsername).observe(viewLifecycleOwner, Observer { groups ->
             adapter.setGroups(groups)
         })

@@ -82,10 +82,10 @@ class NewGroupActivity : AppCompatActivity() {
         }
     }
 
-        override fun onSupportNavigateUp(): Boolean {
-            onBackPressed()
-            return true
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
     private fun checkAndAddChipToGroup(username: String, chipGroup: ChipGroup) {
         if (!sharedViewModel.isValidUsername(username)) {

@@ -29,7 +29,11 @@ class SharedViewModel : ViewModel() {
                 if (e != null) {
                     return@addSnapshotListener
                 }
-                val tempGroup = value!!.documents.map { doc -> doc!!.toObject(Group::class.java)!! }
+                val tempGroup = value!!.documents.map { doc ->
+                    var group = doc!!.toObject(Group::class.java)!!
+                    group.id = doc.id
+                    group
+                }
                 groups = tempGroup.map { it.name to it.members }.toMap()
             }
     }
@@ -39,9 +43,6 @@ class SharedViewModel : ViewModel() {
     }
 
     fun getMembers(groupName: String): List<String>? {
-        Log.d("shared", "got ${groups.size}, query: $groupName ${groups}")
-        val answer = groups.get(groupName)
-        Log.d("shared", "ans: $answer")
-        return answer
+        return groups.get(groupName)
     }
 }

@@ -36,7 +36,7 @@ class CalendarFragment : Fragment() {
             this.context?.startActivity(intent)
         }
 
-        val adapter = CalendarAdapter(emptyList())
+        val adapter = CalendarAdapter(activeUsername, emptyList())
         calendarViewModel.calendar(activeUsername).observe(viewLifecycleOwner, Observer { matches ->
             adapter.setMatches(matches)
         })
