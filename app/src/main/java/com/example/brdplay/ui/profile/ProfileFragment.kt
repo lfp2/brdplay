@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.brdplay.R
 import com.example.brdplay.SignInActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -46,6 +49,14 @@ class ProfileFragment : Fragment() {
         val editTextEmail : EditText = root.findViewById(R.id.editTextEmailAddress)
         editTextEmail.setText(activeEmail)
 
+        val editProfileButton : Button = root.findViewById(R.id.buttonEditProfile)
+        editProfileButton.setOnClickListener {
+            val changeRequest = userProfileChangeRequest {
+                displayName = editTextUsername.text.toString()
+            }
+            editProfile(changeRequest)
+        }
+
         return root
     }
 
@@ -54,6 +65,22 @@ class ProfileFragment : Fragment() {
         requireActivity().run{
             startActivity(Intent(this, SignInActivity::class.java))
             finish()
+        }
+    }
+
+    private fun editProfile(changeRequest: UserProfileChangeRequest) {
+        val user = auth.currentUser
+        user!!.updateProfile(changeRequest).addOnCompleteListener {
+            task ->
+            if(task.isSuccessful) {
+                requireActivity().run {
+                    Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                requireActivity().run {
+                    Toast.makeText(this, "Error: Profile not updated", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }
