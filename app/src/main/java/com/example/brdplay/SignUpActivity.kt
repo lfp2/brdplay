@@ -2,12 +2,10 @@ package com.example.brdplay
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.brdplay.models.User
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -60,7 +58,7 @@ class SignUpActivity : AppCompatActivity() {
                             writeNewUser(user!!.uid, username, email)
                             goToMainActivity(username)
                         } else {
-                            errorMessage.text = task.exception.toString()
+                            errorMessage.text = task.exception?.message
                         }
                     }
             } else {

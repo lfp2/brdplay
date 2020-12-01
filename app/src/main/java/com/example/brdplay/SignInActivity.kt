@@ -2,13 +2,10 @@ package com.example.brdplay
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -63,8 +60,7 @@ class SignInActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     goToMainActivity(auth.currentUser!!)
                 } else {
-                    Toast.makeText(baseContext, "Invalid Email or Password",
-                        Toast.LENGTH_SHORT).show()
+                    errorMessage.text = "Invalid Email or Password"
                 }
             }
     }
