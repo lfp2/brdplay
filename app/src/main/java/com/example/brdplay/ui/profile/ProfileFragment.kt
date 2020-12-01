@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.brdplay.R
@@ -33,10 +34,18 @@ class ProfileFragment : Fragment() {
 //        profileViewModel.text.observe(viewLifecycleOwner, Observer {
 //            textView.text = it
 //        })
-        val signInButton : Button = root.findViewById(R.id.buttonSignOut)
-        signInButton.setOnClickListener {
+        val signOutButton : Button = root.findViewById(R.id.buttonSignOut)
+        signOutButton.setOnClickListener {
             signOut()
         }
+
+        val activeUsername = requireActivity().intent.getStringExtra("activeUsername")!!
+        val activeEmail = Firebase.auth.currentUser?.email!!
+        val editTextUsername : EditText = root.findViewById(R.id.editTextUsername)
+        editTextUsername.setText(activeUsername)
+        val editTextEmail : EditText = root.findViewById(R.id.editTextEmailAddress)
+        editTextEmail.setText(activeEmail)
+
         return root
     }
 
