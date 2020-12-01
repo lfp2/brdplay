@@ -12,10 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.brdplay.R
 import com.example.brdplay.SignInActivity
+import com.example.brdplay.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -23,6 +26,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +34,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         auth = Firebase.auth
+        database = Firebase.firestore
         profileViewModel =
             ViewModelProvider(this).get(ProfileViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
@@ -73,6 +78,10 @@ class ProfileFragment : Fragment() {
         user!!.updateProfile(changeRequest).addOnCompleteListener {
             task ->
             if(task.isSuccessful) {
+                database.collection("users")
+                    .document(user!!.uid)
+                    .update(mapOf( "username" to user!!.displayName))
+
                 requireActivity().run {
                     Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
                 }
