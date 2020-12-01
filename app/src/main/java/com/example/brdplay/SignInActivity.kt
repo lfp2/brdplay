@@ -55,6 +55,10 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun signIn(email: String, password: String) {
+        if (email.isEmpty() || password.isEmpty()) {
+            errorMessage.text = "Invalid Email or Password"
+            return
+        }
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
